@@ -1,2 +1,2 @@
-# lobot
-Project Repo for Lobot
+# Lobot
+Project Repo for Lobot, a Discord bot I created with the help to ChatGPT.
