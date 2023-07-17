@@ -1,13 +1,15 @@
 import discord
 from discord.ext import commands
 
+intents = discord.Intents.none()
+
 # Create an instance of the bot
-bot = commands.Bot(command_prefix='!')
+bot = commands.Bot(command_prefix='!', intents=intents)
 
 # Event: Bot is ready and connected to Discord
 @bot.event
 async def on_ready():
-    print(f'Logged in as {bot.user.name} ({bot.user.id})')
+    print(f'Logged in as LOBOT ({bot.user.id})')
     print('------')
 
 # Event: Bot receives a new message
