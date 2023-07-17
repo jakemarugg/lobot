@@ -33,7 +33,14 @@ async def ping(ctx):
 async def echo(ctx, *, message):
     await ctx.send(message)
 
-# Add more commands and events as needed
+# Command: Add two numbers
+@bot.command()
+async def add(ctx, num1: float, num2: float):
+    # Calculate the sum
+    result = num1 + num2
+
+    # Send the result as a message
+    await ctx.send(f'The sum of {num1} and {num2} is: {result}')
 
 # Replace 'YOUR_TOKEN' with your Discord bot token
 bot.run(config.TOKEN)
