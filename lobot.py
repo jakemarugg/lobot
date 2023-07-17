@@ -1,7 +1,8 @@
 import discord
+import config
 from discord.ext import commands
 
-intents = discord.Intents.none()
+intents = discord.Intents.all()
 
 # Create an instance of the bot
 bot = commands.Bot(command_prefix='!', intents=intents)
@@ -23,7 +24,7 @@ async def on_message(message):
     await bot.process_commands(message)
 
 # Command: Ping the bot
-@bot.command()
+@bot.command(name='ping')
 async def ping(ctx):
     await ctx.send('Pong!')
 
@@ -35,4 +36,4 @@ async def echo(ctx, *, message):
 # Add more commands and events as needed
 
 # Replace 'YOUR_TOKEN' with your Discord bot token
-bot.run('YOUR_TOKEN')
+bot.run(config.TOKEN)
