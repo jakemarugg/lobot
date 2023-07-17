@@ -42,5 +42,31 @@ async def add(ctx, num1: float, num2: float):
     # Send the result as a message
     await ctx.send(f'The sum of {num1} and {num2} is: {result}')
 
+# Command: Check if a number is a palindrome
+@bot.command()
+async def is_palindrome(ctx, x: int):
+    # Convert the number to a string
+    str_x = str(x)
+
+    # Check if the string is equal to its reverse
+    is_palindrome = str_x == str_x[::-1]
+
+    # Send the result as a message
+    await ctx.send(f'{x} is a palindrome: {is_palindrome}')
+
+# Command: Find all permutations of an array
+@bot.command()
+async def permutations(ctx, *numbers: int):
+    # Check if the number of elements in the array is valid
+    if len(numbers) > 6:
+        await ctx.send("The array should have at most 6 elements.")
+        return
+
+    # Generate all permutations
+    perms = list(permutations(numbers))
+
+    # Send the permutations as a message
+    await ctx.send(f"All permutations:\n{perms}")
+
 # Replace 'YOUR_TOKEN' with your Discord bot token
 bot.run(config.TOKEN)
