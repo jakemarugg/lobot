@@ -1,3 +1,4 @@
+import requests
 import discord
 import config
 from discord.ext import commands
@@ -83,6 +84,27 @@ def generate_permutations(numbers):
             all_perms.append([curr_num] + perm)
 
     return all_perms
+
+# Command: Get NASA's Astronomy Picture of the Day
+@bot.command()
+async def apod(ctx):
+    # Send a request to the APOD API
+    url = 'https://api.nasa.gov/planetary/apod'
+    params = {'api_key': 'DEMO_KEY'} 
+    response = requests.get(url, params=params)
+    data = response.json()
+
+    # Extract the image URL and description from the API response
+    image_url = data['url']
+    description = data['explanation']
+
+    # Create an embed and set the image and description
+    embed = discord.Embed()
+    embed.set_image(url=image_url)
+    embed.description = description
+
+    # Send the embed as a message
+    await ctx.send(embed=embed)
 
 # Replace 'YOUR_TOKEN' with your Discord bot token
 bot.run(config.TOKEN)
