@@ -63,10 +63,26 @@ async def permutations(ctx, *numbers: int):
         return
 
     # Generate all permutations
-    perms = list(permutations(numbers))
+    perms = generate_permutations(numbers)
 
     # Send the permutations as a message
     await ctx.send(f"All permutations:\n{perms}")
+
+# Function to generate all permutations recursively
+def generate_permutations(numbers):
+    if len(numbers) <= 1:
+        return [list(numbers)]
+
+    all_perms = []
+    for i in range(len(numbers)):
+        curr_num = numbers[i]
+        remaining_nums = numbers[:i] + numbers[i+1:]
+        perms = generate_permutations(remaining_nums)
+
+        for perm in perms:
+            all_perms.append([curr_num] + perm)
+
+    return all_perms
 
 # Replace 'YOUR_TOKEN' with your Discord bot token
 bot.run(config.TOKEN)
